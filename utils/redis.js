@@ -9,7 +9,7 @@ class RedisClient {
     });
   }
 
-  isAlive() {
+  async isAlive() {
     return new Promise((resolve) => {
       this.client.ping('PING', (err, result) => {
         if (err) {
@@ -21,7 +21,7 @@ class RedisClient {
     });
   }
 
-  get(key) {
+  async get(key) {
     return new Promise((resolve, reject) => {
       this.client.get(key, (err, result) => {
         if (err) {
@@ -33,7 +33,7 @@ class RedisClient {
     });
   }
 
-  set(key, value, duration) {
+  async set(key, value, duration) {
     return new Promise((resolve, reject) => {
       this.client.setex(key, duration, value, (err, result) => {
         if (err) {
@@ -45,7 +45,7 @@ class RedisClient {
     });
   }
 
-  del(key) {
+  async del(key) {
     return new Promise((resolve, reject) => {
       this.client.del(key, (err, result) => {
         if (err) {
@@ -60,4 +60,4 @@ class RedisClient {
 
 const redisClient = new RedisClient();
 
-export default redisClient;
+module.exports = redisClient;
